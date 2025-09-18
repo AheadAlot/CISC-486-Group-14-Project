@@ -7,40 +7,26 @@
 </div>
 
 ## Overview
-Castle Champions is a 3D tower defense and action game. You play as a member of the town guard. You can place different defense defensive structures on the only path towards the town to stop monsters from reaching the town, and can also fight the monsters by yourself. In multiplayer, everyone can join your session to build defenses and fight against monsters on the path.
+Castle Champions is a 3D tower defense and action game. You play as a member of the town guard. You can place different defense defensive structures on the only path towards the town to stop monsters from reaching the town, and can also jump in and fight the monsters by yourself. In multiplayer, everyone can join your session to build defenses and fight against monsters on the path.
 
 
 ## Game Type
-3D Tower Defense, Action and Co-op multiplayer game.
+3D Tower Defense and Action Game.
 
 
 ## Core Gameplay
-Player controls a character to place defense defensive structures along side the only path to the town. When monster spawns, defense tower will attack monsters, and player can jump into the path and fight the monsters as well. Player will get gold coin reward for killing monsters, and gold coins can be used to upgrade a tower, build new defensive structures, upgrade town to get more coin on killing a monster, and upgrade player weapons.
+Player controls a character to place defense defensive structures along side the only path to the town. When monster spawns, defense structures will attack monsters, and player can jump into the path and fight the monsters as well. Player will get gold coin reward for killing monsters, and gold coins can be used to upgrade a defense structure, build new defensive structures, upgrade town to get more coin on killing a monster, and upgrade player weapons.
 
 ```mermaid
 flowchart TD
-    A[Place defensive structures] -->B[Monster spawn]
-    B --> C[Fight against monsters]
+    B[Monster Spawn] --> C[Fight against monsters]
     C --> D[Win this wave]
-    D --> E[Upgrade/place tower]
+    D --> E[Place/upgrade structure]
     E --> F[Upgrade weapons]
     F --> G[Upgrade town]
     G --> H[Wave start]
-    H --> A
+    H --> B
 ```
-
-## Ped Setup
-
-### Player numerical settings
-| Type | HP | Attack |Speed|
-|-|-|-|-|
-|Player|Infinity|10|10|
-
-### Monsters numerical settings
-|Name| Monster type | HP | Attack |Defend|Speed|
-|-|-|-|-|-|-|
-|Slime|Basic|1|1|1|2|
-|Goblins|Basic|50|10|10|15|
 
 ---
 
@@ -99,6 +85,7 @@ Setup:
 Synchronizations: 
 - Player, monsters, defensive structures and town will be synced with their HP, position, level from host player to other players in the same session.
 - Game time synced with host player game time.
+- All scripted events will be synced to all players.
 
 
 ## Scripted Event
