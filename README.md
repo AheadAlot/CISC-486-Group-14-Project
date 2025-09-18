@@ -1,13 +1,13 @@
 <div align="center"> 
 
-# The Long Path
+# Castle Champions
 ### CISC 486
 #### Group 14
 
 </div>
 
 ## Overview
-The Long Path is a 3D tower defense game. You play as a member of the town guard. You can place different defense towers on the only path towards the town to stop monsters from reaching the town, and can also fight the monsters by yourself. In multiplayer, everyone can join your session to build defenses and fight against monsters on the path.
+Castle Champions is a 3D tower defense and action game. You play as a member of the town guard. You can place different defense defensive structures on the only path towards the town to stop monsters from reaching the town, and can also fight the monsters by yourself. In multiplayer, everyone can join your session to build defenses and fight against monsters on the path.
 
 
 ## Game Type
@@ -15,11 +15,11 @@ The Long Path is a 3D tower defense game. You play as a member of the town guard
 
 
 ## Core Gameplay
-Player controls a character to place defense towers along side the only path to the town. When monster spawns, defense tower will attack monsters, and player can jump into the path and fight the monsters as well. Player will get gold coin reward for killing monsters, and gold coins can be used to upgrade a tower, build new towers, upgrade town to get more coin on killing a monster, and upgrade player weapons.
+Player controls a character to place defense defensive structures along side the only path to the town. When monster spawns, defense tower will attack monsters, and player can jump into the path and fight the monsters as well. Player will get gold coin reward for killing monsters, and gold coins can be used to upgrade a tower, build new defensive structures, upgrade town to get more coin on killing a monster, and upgrade player weapons.
 
 ```mermaid
 flowchart TD
-    A[Place towers] -->B[Monster spawn]
+    A[Place defensive structures] -->B[Monster spawn]
     B --> C[Fight against monsters]
     C --> D[Win this wave]
     D --> E[Upgrade/place tower]
@@ -75,7 +75,7 @@ stateDiagram-v2
     Attack --> Dead : Killed
 ```
 
-### Towers
+### Defensive structures & Town Gate
 ```mermaid
 stateDiagram-v2
     [*] --> Idle
@@ -94,35 +94,34 @@ Mode: LAN Co-op
 Setup: 
 - Player can join another player's session, and will play as another town guard member.
 - Player cannot cause damage to other players.
-- All players can build and upgrade towers, and will sync across all players.
+- All players can build and upgrade defensive structures, and will sync across all players.
 
 Synchronizations: 
-- Player, monsters, towers will be synced from host player to other players in the same session.
+- Player, monsters, defensive structures and town will be synced with their HP, position, level from host player to other players in the same session.
 - Game time synced with host player game time.
 
 
 ## Scripted Event
 
-### SEventPlayerJoined
-Fired when a player joins the host session. Host will receive a notification.
+### Earth Quake
+Fired randomly in a random wave.
 
-### SEventWavePrepare
-Different types of monsters will spawn randomly on the starting point of the path with random species and types.
+All monsters, defensive structures and town receives random HP damage.
 
-### SEventWaveStart
-Monsters spawned in `SEventWavePrepare` event will start moving on the path towards the town.
+### Town Self Upgrade
+Fired at the winning of every 5 wave.
 
-### SEventWaveEnd
-All monsters in current wave is cleared. Player will have some time (at lease 60 seconds) to prepare for the next wave.
+The town will upgrade 1 level by itself.
 
-### SEventWaveFailed
-Town lost all of its HP, game over.
+### Tax Received
+Fired at the winning of every 5 wave.
 
+The town revenue agency has collected all tax return forms and provided you some funds for defending the town.
 
 ## Environment
 A fantastical world where a small human settlement lies in a large boundless forest and grasslands. Mountains are used to surround the playable world. Invisible walls are used on map edges to prevent players from crossing boundaries.
 
-The path to the town is using NavMesh baking for pathfinding.
+A path lies in the forest and leads towards the only town.
 
 The town has some medieval style buildings including apartments, houses, bar, guild and an upgradable gate as the last defense structure.
 
@@ -138,6 +137,7 @@ Daytime, dawn/dust, night skyboxes will be used to simulate time passing.
 |D|Move right|
 |Space|Jump|
 |E|Interact|
+|N|Next Wave|
 |Shift + WASD|Sprint|
 |Esc|Game Options (+Pause in single player)|
 
@@ -145,7 +145,7 @@ Daytime, dawn/dust, night skyboxes will be used to simulate time passing.
 
 **Unity Version**: 2022.3.62f1
 
-**Assets**: Unity Store and similar online asset shops to acquire free assets for background, skybox, textures, sound effects and models.
+**Assets**: Unity Store and similar online asset shops to acquire free assets for background, skybox, textures, sound effects, animations and models.
 
 **Version Control**: GitHub will be used for version control and possible CI/CD operations.
 
