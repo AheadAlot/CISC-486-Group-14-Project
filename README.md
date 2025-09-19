@@ -28,6 +28,19 @@ flowchart TD
     H --> B
 ```
 
+## Ped Setup
+
+### Player numerical settings
+| Type | HP | Attack |Speed|
+|-|-|-|-|
+|Player|Infinity|10|10|
+
+### Monsters numerical settings
+| Monster type | HP | Attack |Defend|Speed|
+|-|-|-|-|-|
+|Basic|1-25|1-10|1-10|1-10|
+|Intermediate|50-100|10-50|10-50|10-20|
+|Advanced|100-200|50-100|50-100|30|
 ---
 
 ## AI Plan
@@ -135,6 +148,8 @@ Daytime, dawn/dust, night skyboxes will be used to simulate time passing.
 **Assets**: Unity Store and similar online asset shops to acquire free assets for background, skybox, textures, sound effects, animations and models.
 
 **Version Control**: GitHub will be used for version control and possible CI/CD operations.
+
+**Development Style**: GitHub Projects will be used to create and distribute tasks to each team members.
 
 ## Team Members and Roles
 | Name | Roles | Responsibilities|
