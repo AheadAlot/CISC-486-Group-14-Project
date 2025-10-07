@@ -19,5 +19,14 @@ public class Rikayon : MonoBehaviour {
             animator.SetTrigger("Attack_1");
         }
 
+		else if (Input.GetKey(KeyCode.W))
+		{
+			animator.SetTrigger("Walk_Cycle_1");
+		}
+
+		else if (Input.GetKey(KeyCode.S))
+		{
+			animator.SetTrigger("Walk_Cycle_2");
+		}
 	}
 }

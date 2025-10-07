@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Characters/Players/IseikaiSwat/Animations/Crouching/CrouchIdle.anim.meta
+guid: a24eb4ed08da8bf4a911c97660043433
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+========
+guid: c1632d359755ce14495f07194501358e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 23800000
+>>>>>>>> 924309a (terrain: Baked NavMesh):Assets/FantasyEnvironments/Environments/Scenes/DemoScene/NavMesh.asset.meta
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
