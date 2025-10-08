@@ -6,7 +6,8 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
     public float wanderRadius = 50f;
-    public float speed = 25f;
+    public float wanderSpeed = 5f;
+    public float chaseSpeed = 7.5f;
     public float changeDirTime = 15f;
     public float chaseRange = 25f;
     public float attackRange = 4f;
@@ -22,8 +23,8 @@ public class EnemyAI : MonoBehaviour
         animator = GetComponent<Animator>();
 
         DistanceService distanceService = new DistanceService(transform, chaseRange, attackRange);
-        WanderBehavior wanderBehavior = new WanderBehavior(transform, navMeshAgent, animator, wanderRadius, changeDirTime);
-        ChaseBehavior chaseBehavior = new ChaseBehavior(navMeshAgent, animator);
+        WanderBehavior wanderBehavior = new WanderBehavior(transform, navMeshAgent, animator, wanderRadius, changeDirTime, wanderSpeed);
+        ChaseBehavior chaseBehavior = new ChaseBehavior(navMeshAgent, animator, chaseSpeed);
         AttackBehavior attackBehavior = new AttackBehavior(transform, navMeshAgent, animator);
 
         fsm = new EnemyStateMachine(distanceService, wanderBehavior, chaseBehavior, attackBehavior);

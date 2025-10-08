@@ -6,6 +6,7 @@ public class WanderBehavior : IEnemyBehavior
     private float wanderRadius = 50f;
     private float timer = 0f;
     private float changeDirTime = 5f;
+    private float wanderSpeed = 5f;
     private Transform npcTransform;
     private NavMeshAgent navMeshAgent;
     private Animator animator;
@@ -15,7 +16,8 @@ public class WanderBehavior : IEnemyBehavior
         NavMeshAgent agent,
         Animator animator,
         float wanderRadius,
-        float changeDirTime
+        float changeDirTime,
+        float wanderSpeed
         )
     {
         this.npcTransform = npcTransform;
@@ -23,6 +25,7 @@ public class WanderBehavior : IEnemyBehavior
         this.animator = animator;
         this.wanderRadius = wanderRadius;
         this.changeDirTime = changeDirTime;
+        this.wanderSpeed = wanderSpeed;
     }
 
     private void GetNewWanderPosition()
@@ -35,6 +38,7 @@ public class WanderBehavior : IEnemyBehavior
         NavMeshHit hit;
         if (NavMesh.SamplePosition(rand, out hit, wanderRadius, NavMesh.AllAreas))
         {
+            navMeshAgent.speed = wanderSpeed;
             navMeshAgent.SetDestination(hit.position);
         }
     }
@@ -44,9 +48,7 @@ public class WanderBehavior : IEnemyBehavior
     {
         Debug.Log("In Wander State.");
         GetNewWanderPosition();
-        animator.SetBool("isAttacking", false);
         animator.SetTrigger("Walk_Cycle_1");
-        navMeshAgent.isStopped = false;
     }
 
     public void OnUpdate()

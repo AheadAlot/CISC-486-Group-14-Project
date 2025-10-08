@@ -2048,7 +2048,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wanderRadius: 50
-  speed: 5
+  wanderSpeed: 5
+  chaseSpeed: 7.5
   changeDirTime: 15
   chaseRange: 25
   attackRange: 4
@@ -2834,7 +2835,6 @@ MonoBehaviour:
   firstPersonPos: {fileID: 1346611186}
   thirdPersonPos: {fileID: 1144612877}
   isFirstPerson: 1
-  switchSmoothTime: 5
   isMoving: 0
   isCrouching: 0
   isRunning: 0

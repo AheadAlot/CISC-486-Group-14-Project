@@ -7,14 +7,17 @@ public class ChaseBehavior : IEnemyBehavior
 {
     private NavMeshAgent navMeshAgent;
     private Animator animator;
+    private float chaseSpeed;
 
     public ChaseBehavior(
         NavMeshAgent navMeshAgent,
-        Animator animator
+        Animator animator,
+        float chaseSpeed
     )
     {
         this.navMeshAgent = navMeshAgent;
         this.animator = animator;
+        this.chaseSpeed = chaseSpeed;
     }
 
     public void ChasePlayer(float speed)
@@ -33,9 +36,7 @@ public class ChaseBehavior : IEnemyBehavior
     public void OnEnter()
     {
         Debug.Log("In ChasePlayer State.");
-        animator.SetBool("isAttacking", false);
         animator.SetTrigger("Walk_Cycle_1");
-        navMeshAgent.isStopped = false;
     }
 
     public void OnExit()
@@ -45,6 +46,6 @@ public class ChaseBehavior : IEnemyBehavior
 
     public void OnUpdate()
     {
-        ChasePlayer(5f);
+        ChasePlayer(chaseSpeed);
     }
 }

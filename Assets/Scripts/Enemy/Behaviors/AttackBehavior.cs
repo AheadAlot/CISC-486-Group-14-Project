@@ -23,20 +23,27 @@ public class AttackBehavior : IEnemyBehavior
     public void OnEnter()
     {
         Debug.Log("In AttackPlayer State.");
-        animator.SetBool("isAttacking", true);
-        // TODO: random attack animation?
-        animator.SetTrigger($"Attack_1");
         navMeshAgent.isStopped = true;
+        // Immediately clear all velocity otherwise will silde a little
+        navMeshAgent.velocity = Vector3.zero;
+        animator.SetBool("isAttacking", true);
+
+        int[] validAnim = { 1, 2, 3, 5 }; // Attack 4 glitchy
+        int index = validAnim[Random.Range(0, validAnim.Length)];
+        animator.SetTrigger($"Attack_{index}");
     }
 
     public void OnExit()
     {
-        animator.SetBool("isAttacking", false);
         navMeshAgent.isStopped = false;
+        animator.SetBool("isAttacking", false);
     }
 
     public void OnUpdate()
     {
-        npcTransform.LookAt(PlayerController.Instance.transform.position);
+        Vector3 targetPos = PlayerController.Instance.transform.position;
+        // only rotate on Y
+        targetPos.y = npcTransform.position.y;
+        npcTransform.LookAt(targetPos);
     }
 }
