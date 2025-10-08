@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MovementStateManager : MonoBehaviour
@@ -28,10 +27,24 @@ public class MovementStateManager : MonoBehaviour
     public crouchstate crouch = new crouchstate();
 
 
+    // Singleton for getting transform position easily
+    public static MovementStateManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(Instance);
+            return;
+        }
+        Instance = this;
+    }
+
     void Start()
     {
         anime = GetComponentInChildren<Animator>();
         controller = GetComponent<CharacterController>();
+        Cursor.lockState = CursorLockMode.Locked;
         SwitchState(idle);
     }
 

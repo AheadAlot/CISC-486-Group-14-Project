@@ -18,7 +18,7 @@ public class DistanceService
         sqrEnemyAttackRange = attackRange * attackRange;
     }
 
-    private float DistanceToPlayer => (npcTransform.position - PlayerController.Instance.transform.position).sqrMagnitude;
+    private float DistanceToPlayer => (npcTransform.position - MovementStateManager.Instance.transform.position).sqrMagnitude;
     public bool IsPlayerInChaseRange => DistanceToPlayer <= sqrEnemyChaseRange;
     public bool IsPlayerInAttackRange => DistanceToPlayer <= sqrEnemyAttackRange;
 }

@@ -22,12 +22,12 @@ public class ChaseBehavior : IEnemyBehavior
 
     public void ChasePlayer(float speed)
     {
-        if (PlayerController.Instance == null)
+        if (MovementStateManager.Instance == null)
         {
             Debug.LogWarning("ChasePlayer has null PlayerController instance.");
             return;
         }
-        Vector3 playerPos = PlayerController.Instance.transform.position;
+        Vector3 playerPos = MovementStateManager.Instance.transform.position;
 
         navMeshAgent.speed = speed;
         navMeshAgent.SetDestination(playerPos);

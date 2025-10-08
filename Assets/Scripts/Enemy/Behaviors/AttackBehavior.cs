@@ -41,7 +41,7 @@ public class AttackBehavior : IEnemyBehavior
 
     public void OnUpdate()
     {
-        Vector3 targetPos = PlayerController.Instance.transform.position;
+        Vector3 targetPos = MovementStateManager.Instance.transform.position;
         // only rotate on Y
         targetPos.y = npcTransform.position.y;
         npcTransform.LookAt(targetPos);
