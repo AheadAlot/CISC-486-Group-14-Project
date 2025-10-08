@@ -27,6 +27,7 @@ public class MovementStateManager : MonoBehaviour
     public runstate run = new runstate();
     public crouchstate crouch = new crouchstate();
 
+
     void Start()
     {
         anime = GetComponentInChildren<Animator>();
@@ -71,12 +72,6 @@ public class MovementStateManager : MonoBehaviour
         else if (velocity.y < 0) velocity.y = -2f;
         controller.Move(velocity * Time.deltaTime);
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(spherePos, controller.radius - 0.05f);
-    }  
 
 }
 
