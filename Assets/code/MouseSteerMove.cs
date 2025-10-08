@@ -34,6 +34,11 @@ public class MouseSteerMove : MonoBehaviour
         if (cameraFollowPos)
             cameraFollowPos.localRotation = Quaternion.Euler(pitch, 0f, 0f);
 
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
+
+        Vector3 moveDir = (transform.forward * v + transform.right * h);
+        if (moveDir.sqrMagnitude > 1f) moveDir.Normalize();
 
         if (cc.isGrounded && velY < 0f) velY = -2f;
         velY += gravity * Time.deltaTime;
