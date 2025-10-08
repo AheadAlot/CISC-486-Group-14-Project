@@ -8,9 +8,14 @@ public class MouseSteerMove : MonoBehaviour
 
     [SerializeField] Transform cameraFollowPos;
     CharacterController cc;
+    Animator anim;
 
     [SerializeField] float moveSpeed = 6f;
     [SerializeField] float gravity = -20f;
+
+    [SerializeField] string pSpeed = "speed";
+    [SerializeField] string pMoveX = "moveX";
+    [SerializeField] string pMoveZ = "moveZ";
 
     float pitch;                                     
     float velY;                                     
@@ -18,6 +23,8 @@ public class MouseSteerMove : MonoBehaviour
     void Awake()
     {
         cc = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
+
         if (!cameraFollowPos) Debug.LogWarning("[MouseSteerMove] cameraFollowPos ");
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -45,5 +52,13 @@ public class MouseSteerMove : MonoBehaviour
 
         Vector3 motion = moveDir * moveSpeed + Vector3.up * velY;
         cc.Move(motion * Time.deltaTime);
+        if (anim)
+        {
+            float horizontalSpeed = (moveDir * moveSpeed).magnitude;
+            if (!string.IsNullOrEmpty(pSpeed)) anim.SetFloat(pSpeed, horizontalSpeed);
+
+            if (!string.IsNullOrEmpty(pMoveX)) anim.SetFloat(pMoveX, h);
+            if (!string.IsNullOrEmpty(pMoveZ)) anim.SetFloat(pMoveZ, v);
+        }
     }
 }
