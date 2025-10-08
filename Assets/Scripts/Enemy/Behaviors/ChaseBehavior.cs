@@ -37,11 +37,12 @@ public class ChaseBehavior : IEnemyBehavior
     {
         Debug.Log("In ChasePlayer State.");
         animator.SetTrigger("Walk_Cycle_1");
+        animator.speed = 1.5f;
     }
 
     public void OnExit()
     {
-
+        animator.speed = 1.0f;
     }
 
     public void OnUpdate()
