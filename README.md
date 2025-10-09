@@ -207,15 +207,19 @@ stateDiagram-v2
 ```
 
 - **Idle**: Monster will stand still at their current position with idle animation.
-- **Wander**: Monster will start wandering in a specified range (default `50`), and will have a new destination every `15` seconds.
-- **ChasePlayer**: If a monster spotted a player within a specified range, they will start chasing the player. A rapid moving animation with accelarated animation speed will apply.
-- **AttackPlayer**: Once the player is within the attack range, monster will start attacking player with `4` different attack animations randomly chose.
+- **Wander**: The purpose of this state is to simulate the wandering behavior of a monster. Monster will wander in a specified range (default `50`), and will have a new destination every `15` seconds.
+- **ChasePlayer**: The purpose of this state is to simulate the monster chasing a player. If a monster spotted a player within a specified range, they will start chasing the player. A rapid moving animation with accelarated animation speed will apply.
+- **AttackPlayer**: The purpose of this state is to simulate the attack behavior for a monster on a player. Once the player is within the attack range, monster will start attacking player with `4` different attack animations randomly chose.
 
 
 ## Assets Used
 Below is the list of assets we downloaded from Unity Store and other external sources for A2.
 
-TODO
+**Player SWAT character**: https://www.mixamo.com/#/?page=1&query=swat&type=Character
+
+**Animations**: https://www.mixamo.com/#/?page=1&query=walking&type=Motion%2CMotionPack
+
+**Landscape and Terrain**: https://assetstore.unity.com/packages/3d/environments/fantasy-landscape-103573
 
 ## Open Source Frameworks
 We are using [UnityHFSM](https://github.com/Inspiaaa/UnityHFSM) to implement logic to monster, handle FSM state creation and transitions.
