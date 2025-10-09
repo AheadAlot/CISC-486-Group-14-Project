@@ -21,10 +21,10 @@ public class MovementStateManager : MonoBehaviour
     Vector3 velocity;
 
     MovementBaseState currentState;
-    public idleState idle = new idleState();
-    public walkstate walk = new walkstate();
-    public runstate run = new runstate();
-    public crouchstate crouch = new crouchstate();
+    public IdleState idle = new IdleState();
+    public WalkState walk = new WalkState();
+    public RunState run = new RunState();
+    public CrouchState crouch = new CrouchState();
 
 
     // Singleton for getting transform position easily
