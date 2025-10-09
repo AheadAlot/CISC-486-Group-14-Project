@@ -6,7 +6,7 @@ public class WanderBehavior : IEnemyBehavior
     private float wanderRadius = 50f;
     private float timer = 0f;
     private float changeDirTime = 5f;
-    private float wanderSpeed = 5f;
+    private float wanderSpeed = 1f;
     private Transform npcTransform;
     private NavMeshAgent navMeshAgent;
     private Animator animator;
@@ -48,7 +48,7 @@ public class WanderBehavior : IEnemyBehavior
     {
         Debug.Log("In Wander State.");
         GetNewWanderPosition();
-        animator.SetTrigger("Walk_Cycle_1");
+        animator.SetTrigger("Sneak_Cycle_1");
     }
 
     public void OnUpdate()
