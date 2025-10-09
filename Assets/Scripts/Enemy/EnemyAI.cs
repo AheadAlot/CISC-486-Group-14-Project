@@ -22,12 +22,13 @@ public class EnemyAI : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
 
+        PathingService pathingService = new PathingService(navMeshAgent);
         DistanceService distanceService = new DistanceService(transform, chaseRange, attackRange);
         WanderBehavior wanderBehavior = new WanderBehavior(transform, navMeshAgent, animator, wanderRadius, changeDirTime, wanderSpeed);
         ChaseBehavior chaseBehavior = new ChaseBehavior(navMeshAgent, animator, chaseSpeed);
         AttackBehavior attackBehavior = new AttackBehavior(transform, navMeshAgent, animator);
 
-        fsm = new EnemyStateMachine(distanceService, wanderBehavior, chaseBehavior, attackBehavior);
+        fsm = new EnemyStateMachine(pathingService, distanceService, wanderBehavior, chaseBehavior, attackBehavior);
     }
 
     // Update is called once per frame
