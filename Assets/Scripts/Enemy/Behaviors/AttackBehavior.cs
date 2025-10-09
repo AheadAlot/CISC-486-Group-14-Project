@@ -44,6 +44,21 @@ public class AttackBehavior : IEnemyBehavior
         Vector3 targetPos = MovementStateManager.Instance.transform.position;
         // only rotate on Y
         targetPos.y = npcTransform.position.y;
-        npcTransform.LookAt(targetPos);
+
+        // get vector from npc to player
+        Vector3 direction = targetPos - npcTransform.position;
+        if (direction.sqrMagnitude < 0.001f)
+        {
+            return;
+        }
+
+        // get target rotation on vector
+        Quaternion targetRot = Quaternion.LookRotation(direction);
+        // spheracle interpolate instead of LookAt to avoid sudden rotation change
+        npcTransform.rotation = Quaternion.Slerp(
+            npcTransform.rotation,
+            targetRot,
+            5f * Time.deltaTime
+        );
     }
 }
