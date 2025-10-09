@@ -198,19 +198,27 @@ Daytime, dawn/dust, night skyboxes will be used to simulate time passing.
 The below graph shows the FSM states and transitions for monsters implemented in the game.
 ```mermaid
 stateDiagram-v2
-    [*] --> Idle
-    Idle --> Wander : Start
+    [*] --> Wander
     Wander --> ChasePlayer : Spotted player in range
     Attack --> ChasePlayer : Player left attack range
-    Attack --> Wander : Player left chase range
-    ChasePlayer --> Wander : Player left chase range
+    Attack --> Wander : Out chase range
+    ChasePlayer --> Wander : Out range or not reachable
 ```
 
-- **Idle**: Monster will stand still at their current position with idle animation.
-- **Wander**: The purpose of this state is to simulate the wandering behavior of a monster. Monster will wander in a specified range (default `50`), and will have a new destination every `15` seconds.
-- **ChasePlayer**: The purpose of this state is to simulate the monster chasing a player. If a monster spotted a player within a specified range, they will start chasing the player. A rapid moving animation with accelarated animation speed will apply.
-- **AttackPlayer**: The purpose of this state is to simulate the attack behavior for a monster on a player. Once the player is within the attack range, monster will start attacking player with `4` different attack animations randomly chose.
+- **Wander**: 
+  - The purpose of this state is to simulate the wandering behavior of a monster. 
+  - Monster will wander in a specified range (default `50`), and will have a new destination every `15` seconds.
+  - Transition to `ChasePlayer` if player enters the chase range.
 
+- **ChasePlayer**: 
+  - The purpose of this state is to simulate the monster chasing a player.
+  - If a monster spotted a player within a specified range, they will start chasing the player. A rapid moving animation with accelarated animation speed will apply.
+  - Transition to `AttackPlayer` if player is in attack range. Transition to `Wander` if player left chase range, or player is not reachable in pathing.
+
+- **AttackPlayer**:
+  - The purpose of this state is to simulate the attack behavior for a monster on a player.
+  - Once the player is within the attack range, monster will start attacking player with `4` different attack animations randomly chose.
+  - Transition to `ChasePlayer` if player left attack range. Transition to `Wander` if player left attack range and chase range.
 
 ## Assets Used
 Below is the list of assets we downloaded from Unity Store and other external sources for A2.
