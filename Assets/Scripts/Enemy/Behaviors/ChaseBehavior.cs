@@ -20,7 +20,7 @@ public class ChaseBehavior : IEnemyBehavior
         this.chaseSpeed = chaseSpeed;
     }
 
-    public void ChasePlayer(float speed)
+    private void ChasePlayer(float speed)
     {
         if (MovementStateManager.Instance == null)
         {
@@ -29,6 +29,7 @@ public class ChaseBehavior : IEnemyBehavior
         }
         Vector3 playerPos = MovementStateManager.Instance.transform.position;
 
+        // Use NavMeshAgent for pathing and moving
         navMeshAgent.speed = speed;
         navMeshAgent.SetDestination(playerPos);
     }
@@ -37,11 +38,13 @@ public class ChaseBehavior : IEnemyBehavior
     {
         Debug.Log("In ChasePlayer State.");
         animator.SetTrigger("Walk_Cycle_1");
+        // Faster animation to simulate run
         animator.speed = 1.5f;
     }
 
     public void OnExit()
     {
+        // Reset animator speed
         animator.speed = 1.0f;
     }
 

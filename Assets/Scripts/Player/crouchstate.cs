@@ -1,5 +1,5 @@
 using UnityEngine;
-public class crouchstate : MovementBaseState
+public class CrouchState : MovementBaseState
 {
     public override void EnterState(MovementStateManager swat)
     {

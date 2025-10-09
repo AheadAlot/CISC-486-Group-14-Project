@@ -55,6 +55,7 @@ public class WanderBehavior : IEnemyBehavior
     {
         timer += Time.deltaTime;
 
+        // Get a new wander position when timer is up
         if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.5f || timer >= changeDirTime)
         {
             GetNewWanderPosition();

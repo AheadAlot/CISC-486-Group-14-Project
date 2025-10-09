@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class idleState : MovementBaseState
+public class IdleState : MovementBaseState
 {
     public override void EnterState(MovementStateManager swat)
     {
