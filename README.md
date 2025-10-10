@@ -1,10 +1,42 @@
 <div align="center"> 
 
-# Castle Champions
-### CISC 486
-#### Group 14
+<h1>Castle Champions</h1>
+<h2>CISC 486</h2>
+<h4>Group 14</h4>
 
 </div>
+
+---
+
+- [Assignment 1](#assignment-1)
+  - [Overview](#overview)
+  - [Game Type](#game-type)
+  - [Core Gameplay](#core-gameplay)
+  - [Ped Setup](#ped-setup)
+    - [Player numerical settings](#player-numerical-settings)
+    - [Monsters numerical settings](#monsters-numerical-settings)
+  - [AI Plan](#ai-plan)
+    - [Player](#player)
+    - [Monsters](#monsters)
+    - [Defensive structures \& Town Gate](#defensive-structures--town-gate)
+  - [Multiplayer Plan](#multiplayer-plan)
+  - [Scripted Event](#scripted-event)
+    - [Earth Quake](#earth-quake)
+    - [Town Self Upgrade](#town-self-upgrade)
+    - [Tax Received](#tax-received)
+  - [Environment](#environment)
+  - [Controls](#controls)
+  - [Project Setup](#project-setup)
+  - [Team Members and Roles](#team-members-and-roles)
+- [Assignment 2](#assignment-2)
+  - [Gameplay Video](#gameplay-video)
+  - [FSMs](#fsms)
+  - [Assets Used](#assets-used)
+  - [Open Source Frameworks](#open-source-frameworks)
+
+---
+
+# Assignment 1
 
 ## Overview
 Castle Champions is a 3D tower defense and action game. You play as a member of the town guard. You can place different defense defensive structures on the only path towards the town to stop monsters from reaching the town, and can also jump in and fight the monsters by yourself. In multiplayer, everyone can join your session to build defenses and fight against monsters on the path.
@@ -41,6 +73,7 @@ flowchart TD
 |Basic|1-25|1-10|1-10|1-10|
 |Intermediate|50-100|10-50|10-50|10-20|
 |Advanced|100-200|50-100|50-100|30|
+
 ---
 
 ## AI Plan
@@ -143,7 +176,7 @@ Daytime, dawn/dust, night skyboxes will be used to simulate time passing.
 
 ## Project Setup
 
-**Unity Version**: 2022.3.62f1
+**Unity Version**: ~~2022.3.62f1~~ 2022.3.62f2 (Avoid [CVE-2025-59489](https://www.cve.org/CVERecord?id=CVE-2025-59489))
 
 **Assets**: Unity Store and similar online asset shops to acquire free assets for background, skybox, textures, sound effects, animations and models.
 
@@ -157,3 +190,52 @@ Daytime, dawn/dust, night skyboxes will be used to simulate time passing.
 | Xinyu Liu | Leader, Developer | Game coding, Final decision making, PR review|
 | Jerry Zhang | Developer, Artist | Game coding, PR review|
 | Yiting Ma | Developer, Repository Manager | Game coding, PR review, Branch management|
+
+---
+
+# Assignment 2
+
+## Gameplay Video
+https://www.youtube.com/watch?v=XpOCJtt86Eg
+
+## FSMs
+The below graph shows the FSM states and transitions for monsters implemented in the game.
+```mermaid
+stateDiagram-v2
+    [*] --> Wander
+    Wander --> ChasePlayer : Spotted player in range
+    Attack --> ChasePlayer : Player left attack range
+    Attack --> Wander : Out chase range
+    ChasePlayer --> Wander : Out range or not reachable
+```
+
+- **Wander**: 
+  - The purpose of this state is to simulate the wandering behavior of a monster. 
+  - Monster will wander in a specified range (default `50`), and will have a new destination every `15` seconds.
+  - Transition to `ChasePlayer` if player enters the chase range.
+
+- **ChasePlayer**: 
+  - The purpose of this state is to simulate the monster chasing a player.
+  - If a monster spotted a player within a specified range, they will start chasing the player. A rapid moving animation with accelarated animation speed will apply.
+  - Transition to `AttackPlayer` if player is in attack range. Transition to `Wander` if player left chase range, or player is not reachable in pathing.
+
+- **AttackPlayer**:
+  - The purpose of this state is to simulate the attack behavior for a monster on a player.
+  - Once the player is within the attack range, monster will start attacking player with `4` different attack animations randomly chose.
+  - Transition to `ChasePlayer` if player left attack range. Transition to `Wander` if player left attack range and chase range.
+
+## Assets Used
+Below is the list of assets we downloaded from Unity Store and other external sources for A2.
+
+**Player SWAT character**: https://www.mixamo.com/#/?page=1&query=swat&type=Character
+
+**Animations**: https://www.mixamo.com/#/?page=1&query=walking&type=Motion%2CMotionPack
+
+**Landscape and Terrain**: https://assetstore.unity.com/packages/3d/environments/fantasy-landscape-103573
+
+## Open Source Frameworks
+We are using [UnityHFSM](https://github.com/Inspiaaa/UnityHFSM) to implement logic to monster, handle FSM state creation and transitions.
+
+Although this is an advanced framwork that supports hierarchical FSM, we only used the basic FSM functions provided by the framework.
+
+This framework is licensed with [MIT License](https://github.com/Inspiaaa/UnityHFSM?tab=MIT-1-ov-file).
