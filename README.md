@@ -29,6 +29,7 @@
   - [Project Setup](#project-setup)
   - [Team Members and Roles](#team-members-and-roles)
 - [Assignment 2](#assignment-2)
+  - [Gameplay Video](#gameplay-video)
   - [FSMs](#fsms)
   - [Assets Used](#assets-used)
   - [Open Source Frameworks](#open-source-frameworks)
@@ -193,6 +194,9 @@ Daytime, dawn/dust, night skyboxes will be used to simulate time passing.
 ---
 
 # Assignment 2
+
+## Gameplay Video
+https://www.youtube.com/watch?v=XpOCJtt86Eg
 
 ## FSMs
 The below graph shows the FSM states and transitions for monsters implemented in the game.
