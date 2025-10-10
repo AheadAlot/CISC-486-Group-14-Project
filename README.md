@@ -204,8 +204,8 @@ The below graph shows the FSM states and transitions for monsters implemented in
 stateDiagram-v2
     [*] --> Wander
     Wander --> ChasePlayer : Spotted player in range
-    Attack --> ChasePlayer : Player left attack range
-    Attack --> Wander : Out chase range
+    AttackPlayer --> ChasePlayer : Player left attack range
+    AttackPlayer --> Wander : Out chase range
     ChasePlayer --> Wander : Out range or not reachable
 ```
 
